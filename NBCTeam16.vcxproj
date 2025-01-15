@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BattleManager.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -136,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllGameHeader.h" />
+    <ClInclude Include="BattleManager.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
