@@ -1,4 +1,4 @@
-#include "Inventory.h"
+ï»¿#include "AllGameHeader.h"
 
 #include <iostream>
 using namespace std;
@@ -6,45 +6,45 @@ using namespace std;
 void Inventory::addItem(const shared_ptr<Item>& item)
 {
     items.push_back(item);
-    cout << item->getName() << "À»(¸¦) ÀÎº¥Åä¸®¿¡ Ãß°¡Çß½À´Ï´Ù.\n";
+    cout << item->getName() << "ì„(ë¥¼) ì¸ë²¤í† ë¦¬ì— ì¶”ê°€í–ˆìŠµë‹ˆë‹¤.\n";
 }
 
 void Inventory::useItem(Character& character)
 {
     if (items.empty()) {
-        cout << "ÀÎº¥Åä¸®°¡ ºñ¾î ÀÖ½À´Ï´Ù!\n";
+        cout << "ì¸ë²¤í† ë¦¬ê°€ ë¹„ì–´ ìžˆìŠµë‹ˆë‹¤!\n";
         return;
     }
 
-    cout << "\n=== ÀÎº¥Åä¸® ===" << endl;
+    cout << "\n=== ì¸ë²¤í† ë¦¬ ===" << endl;
     for (size_t i = 0; i < items.size(); ++i) {
         cout << i + 1 << ". " << items[i]->getName() << endl;
     }
-    cout << items.size() + 1 << ". ³ª°¡±â\n";
+    cout << items.size() + 1 << ". ë‚˜ê°€ê¸°\n";
 
-    cout << "»ç¿ëÇÒ ¾ÆÀÌÅÛ ¹øÈ£¸¦ ¼±ÅÃÇÏ¼¼¿ä: ";
+    cout << "ì‚¬ìš©í•  ì•„ì´í…œ ë²ˆí˜¸ë¥¼ ì„ íƒí•˜ì„¸ìš”: ";
     int choice;
     cin >> choice;
 
     if (choice == items.size() + 1) {
-        cout << "ÀÎº¥Åä¸®¸¦ ´Ý½À´Ï´Ù.\n";
+        cout << "ì¸ë²¤í† ë¦¬ë¥¼ ë‹«ìŠµë‹ˆë‹¤.\n";
         return;
     }
 
     if (choice < 1 || choice > items.size()) {
-        cout << "Àß¸øµÈ ¼±ÅÃÀÔ´Ï´Ù.\n";
+        cout << "ìž˜ëª»ëœ ì„ íƒìž…ë‹ˆë‹¤.\n";
         return;
     }
 
     items[choice - 1]->use(character);
-    items.erase(items.begin() + (choice - 1)); // »ç¿ë ÈÄ »èÁ¦
+    items.erase(items.begin() + (choice - 1)); // ì‚¬ìš© í›„ ì‚­ì œ
 }
 
 void Inventory::showInventory() const
 {
-    cout << "\n=== ÇöÀç ÀÎº¥Åä¸® ===\n";
+    cout << "\n=== í˜„ìž¬ ì¸ë²¤í† ë¦¬ ===\n";
     if (items.empty()) {
-        cout << "ÀÎº¥Åä¸®°¡ ºñ¾î ÀÖ½À´Ï´Ù.\n";
+        cout << "ì¸ë²¤í† ë¦¬ê°€ ë¹„ì–´ ìžˆìŠµë‹ˆë‹¤.\n";
     }
     else {
         for (const auto& item : items) {

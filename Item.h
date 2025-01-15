@@ -1,94 +1,48 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
-#include "Character.h" //@TODO: »ìÆìºÁ¾ßÇÔ.
+#include "Character.h"
+#include <iostream>
 
 using namespace std;
 
-class Item 
+class Item
 {
 public:
     virtual ~Item() {}
-    virtual string getName() const = 0; // ¾ÆÀÌÅÛ ÀÌ¸§ ¹İÈ¯
-    virtual int getPrice() const = 0;  // ¾ÆÀÌÅÛ °¡°İ ¹İÈ¯
-    virtual void use(Character& Character) const = 0; // ¾ÆÀÌÅÛ È¿°ú Àû¿ë
+    virtual string getName() const = 0; // ì•„ì´í…œ ì´ë¦„ ë°˜í™˜
+    virtual int getPrice() const = 0;  // ì•„ì´í…œ ê°€ê²© ë°˜í™˜
+    virtual void use(Character& Character) const = 0; // ì•„ì´í…œ íš¨ê³¼ ì ìš©
 };
 
-// Ã¼·Â Æ÷¼Ç(¼Ò) Å¬·¡½º
-class SmallHealthPotion : public Item 
+class SmallHealthPotion : public Item
 {
 public:
-    string getName() const override 
-    {
-        return "Ã¼·Â Æ÷¼Ç(¼Ò)";
-    }
-
-    int getPrice() const override 
-    {
-        return 30;
-    }
-
-    void use(Character& Character) const override 
-    {
-        int healAmount = 80;
-        //Character.currentHealth = min(Character.currentHealth + healAmount, Character.maxHealth);
-        //cout << "Ã¼·ÂÀÌ " << healAmount << "¸¸Å­ È¸º¹µÇ¾ú½À´Ï´Ù. (ÇöÀç Ã¼·Â: "
-        //    << Character.currentHealth << "/" << Character.maxHealth << ")" << endl;
-    }
+    string getName() const override;
+    int getPrice() const override;
+    void use(Character& Character) const override;
 };
 
-// Ã¼·Â Æ÷¼Ç(´ë) Å¬·¡½º
-class LargeHealthPotion : public Item 
+class LargeHealthPotion : public Item
 {
 public:
-    string getName() const override {
-        return "Ã¼·Â Æ÷¼Ç(´ë)";
-    }
-
-    int getPrice() const override {
-        return 60;
-    }
-
-    void use(Character& Character) const override {
-        int healAmount = 200;
-        //Character.currentHealth = min(Character.currentHealth + healAmount, Character.maxHealth);
-        //cout << "Ã¼·ÂÀÌ " << healAmount << "¸¸Å­ È¸º¹µÇ¾ú½À´Ï´Ù. (ÇöÀç Ã¼·Â: "
-        //    << Character.currentHealth << "/" << Character.maxHealth << ")" << endl;
-    }
+    string getName() const override;
+    int getPrice() const override;
+    void use(Character& Character) const override;
 };
 
-// ¸¶³ª Æ÷¼Ç Å¬·¡½º
-class ManaPotion : public Item {
+class ManaPotion : public Item
+{
 public:
-    string getName() const override {
-        return "¸¶³ª Æ÷¼Ç";
-    }
-
-    int getPrice() const override {
-        return 30;
-    }
-
-    void use(Character& Character) const override {
-        int manaAmount = 100;
-        //Character.mana = min(Character.mana + manaAmount, Character.maxMana);
-        //cout << "¸¶³ª°¡ " << manaAmount << "¸¸Å­ È¸º¹µÇ¾ú½À´Ï´Ù. (ÇöÀç ¸¶³ª: "
-        //    << Character.mana << "/" << Character.maxMana << ")" << endl;
-    }
+    string getName() const override;
+    int getPrice() const override;
+    void use(Character& Character) const override;
 };
 
-// °ø°İ·Â °­È­ Å¬·¡½º
-class AttackBoost : public Item {
+class AttackBoost : public Item
+{
 public:
-    string getName() const override {
-        return "°ø°İ·Â °­È­";
-    }
-
-    int getPrice() const override {
-        return 50;
-    }
-
-    void use(Character& Character) const override {
-        //Character.attackPower = static_cast<int>(Character.attackPower * 1.5);
-        //cout << "°ø°İ·ÂÀÌ °­È­µÇ¾ú½À´Ï´Ù! (ÇöÀç °ø°İ·Â: " << Character.attackPower << ")" << endl;
-    }
+    string getName() const override;
+    int getPrice() const override;
+    void use(Character& Character) const override;
 };

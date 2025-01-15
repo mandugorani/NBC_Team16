@@ -1,13 +1,11 @@
-#include "Shop.h"
-#include "Character.h"
-#include "Item.h"
+Ôªø#include "AllGameHeader.h"
 #include <iostream>
 #include <vector>
 #include <memory>
 
 using namespace std;
 
-// ªÛ¡° «‘ºˆ
+// ÏÉÅÏ†ê Ìï®Ïàò
 void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
 {
     vector<shared_ptr<Item>> shopItems = {
@@ -18,32 +16,32 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
     };
 
     while (true) {
-        cout << "\n=== ªÛ¡° ===" << endl;
+        cout << "\n=== ÏÉÅÏ†ê ===" << endl;
         Character.displayStatus();
         cout << endl << endl;
-        cout << "1. æ∆¿Ã≈€ ±∏∏≈" << endl;
-        cout << "2. æ∆¿Ã≈€ ∆«∏≈" << endl;
-        cout << "3. ªÛ¡° ≥™∞°±‚" << endl;
+        cout << "1. ÏïÑÏù¥ÌÖú Íµ¨Îß§" << endl;
+        cout << "2. ÏïÑÏù¥ÌÖú ÌåêÎß§" << endl;
+        cout << "3. ÏÉÅÏ†ê ÎÇòÍ∞ÄÍ∏∞" << endl;
 
-        cout << "ø¯«œ¥¬ ¿€æ˜¿ª º±≈√«œººø‰: ";
+        cout << "ÏõêÌïòÎäî ÏûëÏóÖÏùÑ ÏÑ†ÌÉùÌïòÏÑ∏Ïöî: ";
         int choice;
         cin >> choice;
 
         if (choice == 3) {
-            cout << "ªÛ¡°¿ª ≥™∞©¥œ¥Ÿ." << endl;
+            cout << "ÏÉÅÏ†êÏùÑ ÎÇòÍ∞ëÎãàÎã§." << endl;
             break;
         }
 
         if (choice == 1) {
-            // æ∆¿Ã≈€ ±∏∏≈
-            cout << "\n±∏∏≈ ∞°¥…«— æ∆¿Ã≈€ ∏Ò∑œ:" << endl;
+            // ÏïÑÏù¥ÌÖú Íµ¨Îß§
+            cout << "\nÍµ¨Îß§ Í∞ÄÎä•Ìïú ÏïÑÏù¥ÌÖú Î™©Î°ù:" << endl;
             for (size_t i = 0; i < shopItems.size(); ++i) {
                 cout << i + 1 << ". " << shopItems[i]->getName()
                     << " - " << shopItems[i]->getPrice() << "G" << endl;
             }
-            cout << shopItems.size() + 1 << ". µ⁄∑Œ ∞°±‚" << endl;
+            cout << shopItems.size() + 1 << ". Îí§Î°ú Í∞ÄÍ∏∞" << endl;
 
-            cout << "±∏∏≈«“ æ∆¿Ã≈€ π¯»£∏¶ º±≈√«œººø‰: ";
+            cout << "Íµ¨Îß§Ìï† ÏïÑÏù¥ÌÖú Î≤àÌò∏Î•º ÏÑ†ÌÉùÌïòÏÑ∏Ïöî: ";
             int itemChoice;
             cin >> itemChoice;
 
@@ -52,7 +50,7 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
             }
 
             if (itemChoice < 1 || itemChoice > shopItems.size()) {
-                cout << "¿ﬂ∏¯µ» º±≈√¿‘¥œ¥Ÿ. ¥ŸΩ√ Ω√µµ«œººø‰." << endl;
+                cout << "ÏûòÎ™ªÎêú ÏÑ†ÌÉùÏûÖÎãàÎã§. Îã§Ïãú ÏãúÎèÑÌïòÏÑ∏Ïöî." << endl;
                 continue;
             }
 
@@ -60,27 +58,27 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
             if (Character.gold >= selectedItem->getPrice()) {
                 Character.gold -= selectedItem->getPrice();
                 inventory.push_back(selectedItem);
-                cout << selectedItem->getName() << "¿ª(∏¶) ±∏∏≈«ﬂΩ¿¥œ¥Ÿ!" << endl;
+                cout << selectedItem->getName() << "ÏùÑ(Î•º) Íµ¨Îß§ÌñàÏäµÎãàÎã§!" << endl;
             }
             else {
-                cout << "∞ÒµÂ∞° ∫Œ¡∑«’¥œ¥Ÿ!" << endl;
+                cout << "Í≥®ÎìúÍ∞Ä Î∂ÄÏ°±Ìï©ÎãàÎã§!" << endl;
             }
         }
         else if (choice == 2) {
-            // æ∆¿Ã≈€ ∆«∏≈
+            // ÏïÑÏù¥ÌÖú ÌåêÎß§
             if (inventory.empty()) {
-                cout << "¿Œ∫•≈‰∏Æ∞° ∫ÒæÓ ¿÷Ω¿¥œ¥Ÿ!" << endl;
+                cout << "Ïù∏Î≤§ÌÜ†Î¶¨Í∞Ä ÎπÑÏñ¥ ÏûàÏäµÎãàÎã§!" << endl;
                 continue;
             }
 
-            cout << "\n∆«∏≈ ∞°¥…«— æ∆¿Ã≈€ ∏Ò∑œ:" << endl;
+            cout << "\nÌåêÎß§ Í∞ÄÎä•Ìïú ÏïÑÏù¥ÌÖú Î™©Î°ù:" << endl;
             for (size_t i = 0; i < inventory.size(); ++i) {
                 cout << i + 1 << ". " << inventory[i]->getName()
-                    << " - " << inventory[i]->getPrice() / 2 << "G (∆«∏≈ ∞°∞›)" << endl;
+                    << " - " << inventory[i]->getPrice() / 2 << "G (ÌåêÎß§ Í∞ÄÍ≤©)" << endl;
             }
-            cout << inventory.size() + 1 << ". µ⁄∑Œ ∞°±‚" << endl;
+            cout << inventory.size() + 1 << ". Îí§Î°ú Í∞ÄÍ∏∞" << endl;
 
-            cout << "∆«∏≈«“ æ∆¿Ã≈€ π¯»£∏¶ º±≈√«œººø‰: ";
+            cout << "ÌåêÎß§Ìï† ÏïÑÏù¥ÌÖú Î≤àÌò∏Î•º ÏÑ†ÌÉùÌïòÏÑ∏Ïöî: ";
             int sellChoice;
             cin >> sellChoice;
 
@@ -89,7 +87,7 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
             }
 
             if (sellChoice < 1 || sellChoice > inventory.size()) {
-                cout << "¿ﬂ∏¯µ» º±≈√¿‘¥œ¥Ÿ. ¥ŸΩ√ Ω√µµ«œººø‰." << endl;
+                cout << "ÏûòÎ™ªÎêú ÏÑ†ÌÉùÏûÖÎãàÎã§. Îã§Ïãú ÏãúÎèÑÌïòÏÑ∏Ïöî." << endl;
                 continue;
             }
 
@@ -98,11 +96,11 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
             Character.gold += sellPrice;
             inventory.erase(inventory.begin() + sellChoice - 1);
 
-            cout << selectedItem->getName() << "¿ª(∏¶) " << sellPrice
-                << "Gø° ∆«∏≈«ﬂΩ¿¥œ¥Ÿ!" << endl;
+            cout << selectedItem->getName() << "ÏùÑ(Î•º) " << sellPrice
+                << "GÏóê ÌåêÎß§ÌñàÏäµÎãàÎã§!" << endl;
         }
         else {
-            cout << "¿ﬂ∏¯µ» º±≈√¿‘¥œ¥Ÿ. ¥ŸΩ√ Ω√µµ«œººø‰." << endl;
+            cout << "ÏûòÎ™ªÎêú ÏÑ†ÌÉùÏûÖÎãàÎã§. Îã§Ïãú ÏãúÎèÑÌïòÏÑ∏Ïöî." << endl;
         }
     }
 }
