@@ -5,3 +5,4 @@
 #include "Inventory.h"
 #include "Item.h"
 #include "Shop.h"
+#include "BattleManager.h"
