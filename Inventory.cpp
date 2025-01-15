@@ -1,12 +1,14 @@
-﻿#include "AllGameHeader.h"
+﻿#include "Inventory.h"
+#include "AllGameHeader.h"
 
 #include <iostream>
 using namespace std;
 
-void Inventory::addItem(const shared_ptr<Item>& item)
+void Inventory::addItem(unique_ptr<Item> InItem)
 {
-    items.push_back(item);
-    cout << item->getName() << "을(를) 인벤토리에 추가했습니다.\n";
+	std::string ItemName = InItem->getName();
+    items.push_back(std::move(InItem));
+    cout << ItemName << "을(를) 인벤토리에 추가했습니다.\n";
 }
 
 void Inventory::useItem(Character& character)
@@ -47,8 +49,8 @@ void Inventory::showInventory() const
         cout << "인벤토리가 비어 있습니다.\n";
     }
     else {
-        for (const auto& item : items) {
-            cout << "- " << item->getName() << endl;
-        }
+        //for (const auto& item : items) {
+        //    cout << "- " << item->getName() << endl;
+        //}
     }
 }

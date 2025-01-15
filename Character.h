@@ -3,6 +3,10 @@
 #include <string>
 #include <iostream>
 
+#include "Inventory.h"
+
+class Inventory;
+
 class Character
 {
 public:
@@ -16,6 +20,7 @@ public:
 	int gold;               // 소지금
 	int maxMana;            // 최대 마나
 	int currentMana;        // 현재 마나
+	std::unique_ptr<Inventory> characterInventory; // 캐릭터 인벤토리
 
     // 생성자
     Character(std::string charName);

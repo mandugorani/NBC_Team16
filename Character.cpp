@@ -11,12 +11,15 @@ Character::Character(std::string charName)
     experienceToLevelUp = 100;  // 처음엔 100 경험치로 레벨업
     gold = 0;               
     maxMana = 50;            
-    currentMana = 50;        
+    currentMana = 50;
+	characterInventory = std::make_unique<Inventory>();
 }
 
 void Character::displayStatus()
 {
     std::cout << "이름: " << name << ", 레벨: " << level << ", 체력: " << currentHealth << "/" << maxHealth << ", 공격력: " << attackPower << ", 경험치: " << experience << "/" << experienceToLevelUp << std::endl;
+
+    characterInventory->showInventory();
 }
 
 void Character::gainExperience(int exp)

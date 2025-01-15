@@ -60,6 +60,10 @@ void battleStart(Character& player) {
         }
         else if (choice == 'N') {
             cout << "전투를 건너뛰고 메인 루프로 돌아갑니다." << endl;
+
+            //@brief: [박경호] 아이템 사용 코드.
+            player.characterInventory->useItem(player);
+
             break;
         }
         else {
@@ -112,6 +116,9 @@ void generateItem(Character& player) {
         else {
             player.attackPower += 10;
             cout << "공격력을 올려주는 아이템 발견! 총 공격력: " << player.attackPower << endl;
+			//@brief: 아이템을 인벤토리에 추가
+            std::unique_ptr<Item> AcquiredItem(new AttackBoost());
+            player.characterInventory->addItem(std::move(AcquiredItem));
         }
     }
     else {

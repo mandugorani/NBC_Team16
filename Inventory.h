@@ -6,17 +6,20 @@
 #include "Item.h"
 #include "Character.h"
 
+class Item;
+class Character;
+
 class Inventory
 {
 public:
-	void addItem(const shared_ptr<Item>& item);
+	void addItem(std::unique_ptr<Item> InItem);
 
-	void useItem(Character& character);
+	void useItem(Character& InCharacter);
 
 	void showInventory() const;
 
 private:
-	vector<shared_ptr<Item>> items;
+	std::vector<std::unique_ptr<Item>> items;
 
 };
 
