@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include "Inventory.h"
 
 // 헤더에는 선언만
 class Character
@@ -37,5 +38,5 @@ public:
     // 몬스터 처치 카운트 증가
     void defeatMonster();
 
-    
+    Inventory myInventory;
 };

@@ -1,10 +1,8 @@
-#pragma once
+﻿#pragma once
 
 #include <vector>
 #include <memory>
-
 #include "Item.h"
-#include "Character.h"
 
 class Inventory
 {

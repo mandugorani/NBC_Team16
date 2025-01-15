@@ -1,12 +1,12 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "AllGameHeader.h"
 
 using namespace std;
 
-// Ä³¸¯ÅÍ Å¬·¡½º¸¦ Á¤ÀÇÇÑ´Ù¸é?
+// ìºë¦­í„° í´ë˜ìŠ¤ë¥¼ ì •ì˜í•œë‹¤ë©´?
 void battleStart(Character& player);
 
-// ÀüÅõ ÇÔ¼ö
+// ì „íˆ¬ í•¨ìˆ˜
 void startGame();
 void battle(Character& player);
 void generateItem(Character& player);
@@ -21,79 +21,80 @@ int main()
 
 void startGame() {
     string name;
-    cout << "Ä³¸¯ÅÍÀÇ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ";
+    cout << "ìºë¦­í„°ì˜ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”: ";
     getline(cin, name);
 
     while (name.empty() || name.find(' ') != string::npos) {
-        cout << "Ä³¸¯ÅÍÀÇ ÀÌ¸§¿¡ °ø¹éÀ» ³ÖÀ» ¼ö ¾ø½À´Ï´Ù: ";
+        cout << "ìºë¦­í„°ì˜ ì´ë¦„ì— ê³µë°±ì„ ë„£ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤: ";
         getline(cin, name);
     }
 
     Character player(name);
-    cout << "Ä³¸¯ÅÍ »ı¼º ¿Ï·á!" << endl;
+
+    cout << "ìºë¦­í„° ìƒì„± ì™„ë£Œ!" << endl;
     player.displayStatus();
 
-    // Ä³¸¯ÅÍ »ı¼º ÈÄ ÀüÅõ
+    // ìºë¦­í„° ìƒì„± í›„ ì „íˆ¬
     while (player.level < 10) {
         battleStart(player);
     }
 
-    // º¸½º°¡ µîÀåÇÏ´Â°Í ±¸Çö
-    cout << "ÃàÇÏÇÕ´Ï´Ù! " << player.name << " ·¹º§ 10 ´Ş¼º!" << endl;
-    cout << "º¸½º ¸ó½ºÅÍ µîÀå:" << endl;
+    // ë³´ìŠ¤ê°€ ë“±ì¥í•˜ëŠ”ê²ƒ êµ¬í˜„
+    cout << "ì¶•í•˜í•©ë‹ˆë‹¤! " << player.name << " ë ˆë²¨ 10 ë‹¬ì„±!" << endl;
+    cout << "ë³´ìŠ¤ ëª¬ìŠ¤í„° ë“±ì¥:" << endl;
     Monster boss = generateBossMonster();
-    cout << "º¸½º ÀÌ¸§: " << boss.name << " HP: " << boss.health << ", °ø°İ·Â: " << boss.attackPower << endl;
+    cout << "ë³´ìŠ¤ ì´ë¦„: " << boss.name << " HP: " << boss.health << ", ê³µê²©ë ¥: " << boss.attackPower << endl;
 
-    // ¹Ø¿¡ º¸½ºÀü ÄÚµå Ãß°¡(´Ù¸¥¹æ½ÄÀ¸·Î? °°Àº¹æ½ÄÀ¸·Î?)
+    // ë°‘ì— ë³´ìŠ¤ì „ ì½”ë“œ ì¶”ê°€(ë‹¤ë¥¸ë°©ì‹ìœ¼ë¡œ? ê°™ì€ë°©ì‹ìœ¼ë¡œ?)
 }
 
 void battleStart(Character& player) {
     char choice;
     while (true) {
-        cout << "ÀüÅõ¸¦ ½ÃÀÛÇÏ½Ã°Ú½À´Ï±î? (Y/N): ";
+        cout << "ì „íˆ¬ë¥¼ ì‹œì‘í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N): ";
         cin >> choice;
-        choice = toupper(choice); // ´ë¼Ò¹®ÀÚ ±¸ºĞ ¾ø¾Ö±â
+        choice = toupper(choice); // ëŒ€ì†Œë¬¸ì êµ¬ë¶„ ì—†ì• ê¸°
 
         if (choice == 'Y') {
             battle(player);
             break;
         }
         else if (choice == 'N') {
-            cout << "ÀüÅõ¸¦ °Ç³Ê¶Ù°í ¸ŞÀÎ ·çÇÁ·Î µ¹¾Æ°©´Ï´Ù." << endl;
+            cout << "ì „íˆ¬ë¥¼ ê±´ë„ˆë›°ê³  ë©”ì¸ ë£¨í”„ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤." << endl;
             break;
         }
         else {
-            cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. Y ¶Ç´Â NÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
+            cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. Y ë˜ëŠ” Nì„ ì…ë ¥í•´ì£¼ì„¸ìš”." << endl;
         }
     }
 }
 
 void battle(Character& player) {
     Monster enemy = generateRandomMonster(player.level);
-    cout << enemy.name << "¸ó½ºÅÍ µîÀå! HP: " << enemy.health << ", °ø°İ·Â: " << enemy.attackPower << endl;
+    cout << enemy.name << "ëª¬ìŠ¤í„° ë“±ì¥! HP: " << enemy.health << ", ê³µê²©ë ¥: " << enemy.attackPower << endl;
 
     while (enemy.health > 0) {
         // Player attack
         enemy.health -= player.attackPower;
-        cout << player.name << " ÀÌ(°¡) " << enemy.name << "À»(¸¦) °ø°İ! ³²Àº HP : " << enemy.health << endl;
+        cout << player.name << " ì´(ê°€) " << enemy.name << "ì„(ë¥¼) ê³µê²©! ë‚¨ì€ HP : " << enemy.health << endl;
 
         // Check if monster is defeated
         if (enemy.health <= 0) {
-            cout << "½Â¸®!" << endl;
-            player.gainExperience(50); // °æÇèÄ¡¸¦ 50 ¾ò´Â´Ù°í °¡Á¤
-            player.gold += enemy.goldDrop; // ¸ó½ºÅÍ¿¡ ¼³Á¤µÈ °ñµå °ª   
-            cout << player.name << " ÀÌ(°¡) " << enemy.goldDrop << " °ñµå¸¦ È¹µæÇß½À´Ï´Ù!" << endl;
-            generateItem(player); // ¾ÆÀÌÅÛ µå¶ø ÇÔ¼ö È£Ãâ
+            cout << "ìŠ¹ë¦¬!" << endl;
+            player.gainExperience(50); // ê²½í—˜ì¹˜ë¥¼ 50 ì–»ëŠ”ë‹¤ê³  ê°€ì •
+            player.gold += enemy.goldDrop; // ëª¬ìŠ¤í„°ì— ì„¤ì •ëœ ê³¨ë“œ ê°’   
+            cout << player.name << " ì´(ê°€) " << enemy.goldDrop << " ê³¨ë“œë¥¼ íšë“í–ˆìŠµë‹ˆë‹¤!" << endl;
+            generateItem(player); // ì•„ì´í…œ ë“œë í•¨ìˆ˜ í˜¸ì¶œ
             break;
         }
 
-        // °ø°İ(¸ó½ºÅÍÀÇ)
+        // ê³µê²©(ëª¬ìŠ¤í„°ì˜)
         player.currentHealth -= enemy.attackPower;
-        cout << enemy.name << "ÀÇ °ø°İ" << player.name << " ÀÇ HP°¡ " << player.currentHealth << "·Î °¨¼Ò!" << endl;
+        cout << enemy.name << "ì˜ ê³µê²©" << player.name << " ì˜ HPê°€ " << player.currentHealth << "ë¡œ ê°ì†Œ!" << endl;
 
-        // ÆĞ¹è½Ã
+        // íŒ¨ë°°ì‹œ
         if (player.currentHealth <= 0) {
-            cout << player.name << " °¡ ÆĞ¹èÇß½À´Ï´Ù." << endl;
+            cout << player.name << " ê°€ íŒ¨ë°°í–ˆìŠµë‹ˆë‹¤." << endl;
             exit(0);
         }
     }
@@ -101,20 +102,21 @@ void battle(Character& player) {
 
 void generateItem(Character& player) {
     if (rand() % 100 < 30) { // 30%
-        int itemEffect = rand() % 2; // 0: Ã¼·Â È¸º¹, 1: °ø°İ·Â Áõ°¡
+        //  TODO : ì•„ë˜ëŠ” í˜„ì¬ ì•„ì´í…œì„ ì¦‰ì‹œ ì‚¬ìš©í•˜ëŠ” ë™ì‘ì„ í•¨ -> Item í´ë˜ìŠ¤ë¥¼ ì‚¬ìš©í•´ ê°ì²´ë¥¼ ë§Œë“¤ê³  player.myInventory.addItemì„ í™œìš©í•´ ì¶”ê°€í•œë‹¤. (ìˆœì‹ )
+        int itemEffect = rand() % 2; // 0: ì²´ë ¥ íšŒë³µ, 1: ê³µê²©ë ¥ ì¦ê°€
         if (itemEffect == 0) {
             player.currentHealth += 50;
             if (player.currentHealth > player.maxHealth) {
-                player.currentHealth = player.maxHealth; // Ã¼·Â ÃÊ°ú ¹æÁö
+                player.currentHealth = player.maxHealth; // ì²´ë ¥ ì´ˆê³¼ ë°©ì§€
             }
-            cout << "Ã¼·ÂÀ» È¸º¹ÇØÁÖ´Â ¾ÆÀÌÅÛ ¹ß°ß! Ã¼·Â È¸º¹ ÈÄ Ã¼·Â: " << player.currentHealth << endl;
+            cout << "ì²´ë ¥ì„ íšŒë³µí•´ì£¼ëŠ” ì•„ì´í…œ ë°œê²¬! ì²´ë ¥ íšŒë³µ í›„ ì²´ë ¥: " << player.currentHealth << endl;
         }
         else {
             player.attackPower += 10;
-            cout << "°ø°İ·ÂÀ» ¿Ã·ÁÁÖ´Â ¾ÆÀÌÅÛ ¹ß°ß! ÃÑ °ø°İ·Â: " << player.attackPower << endl;
+            cout << "ê³µê²©ë ¥ì„ ì˜¬ë ¤ì£¼ëŠ” ì•„ì´í…œ ë°œê²¬! ì´ ê³µê²©ë ¥: " << player.attackPower << endl;
         }
     }
     else {
-        cout << "¾ÆÀÌÅÛÀÌ ¾ø´Ù." << endl;
+        cout << "ì•„ì´í…œì´ ì—†ë‹¤." << endl;
     }
 }

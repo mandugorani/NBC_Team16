@@ -1,4 +1,4 @@
-#include "AllGameHeader.h"
+ï»¿#include "AllGameHeader.h"
 #include <iostream>
 
 using namespace std;
@@ -11,74 +11,76 @@ Character::Character(std::string charName)
     maxHealth = 200;
     attackPower = 30;
     experience = 0;
-    experienceToLevelUp = 100;  // Ã³À½¿£ 100 °æÇèÄ¡·Î ·¹º§¾÷
+    experienceToLevelUp = 100;  // ì²˜ìŒì—” 100 ê²½í—˜ì¹˜ë¡œ ë ˆë²¨ì—…
     gold = 0;
     maxMana = 50;
     currentMana = 50;
-    monstersDefeated = 0; // »ı¼º ½Ã Ã³Ä¡ ¸ó½ºÅÍ ¼ö´Â 0
+    monstersDefeated = 0; // ìƒì„± ì‹œ ì²˜ì¹˜ ëª¬ìŠ¤í„° ìˆ˜ëŠ” 0
 }
 
-// ÇöÀç »óÅÂ
+// í˜„ì¬ ìƒíƒœ
 void Character::displayStatus()
 {
-    cout << "\n=== ÇÃ·¹ÀÌ¾î »óÅÂ ===" << endl;
-    cout << "ÀÌ¸§: " << name << endl;
-    cout << "·¹º§: " << level << endl;
-    cout << "°æÇèÄ¡: " << experience << "/" << experienceToLevelUp
-        << " (·¹º§¾÷±îÁö " << (experienceToLevelUp - experience) << " ³²À½)" << endl;
-    cout << "Ã¼·Â: " << currentHealth << "/" << maxHealth << endl;
-    cout << "¸¶³ª: " << currentMana << "/" << maxMana << endl;
-    cout << "°ø°İ·Â: " << attackPower << endl;
-    cout << "º¸À¯ °ñµå: " << gold << "G" << endl;
-    cout << "Ã³Ä¡ÇÑ ¸ó½ºÅÍ ¼ö: " << monstersDefeated << endl;
-    cout << "º¸À¯ ¾ÆÀÌÅÛ: " << endl;
+    cout << "\n=== í”Œë ˆì´ì–´ ìƒíƒœ ===" << endl;
+    cout << "ì´ë¦„: " << name << endl;
+    cout << "ë ˆë²¨: " << level << endl;
+    cout << "ê²½í—˜ì¹˜: " << experience << "/" << experienceToLevelUp
+        << " (ë ˆë²¨ì—…ê¹Œì§€ " << (experienceToLevelUp - experience) << " ë‚¨ìŒ)" << endl;
+    cout << "ì²´ë ¥: " << currentHealth << "/" << maxHealth << endl;
+    cout << "ë§ˆë‚˜: " << currentMana << "/" << maxMana << endl;
+    cout << "ê³µê²©ë ¥: " << attackPower << endl;
+    cout << "ë³´ìœ  ê³¨ë“œ: " << gold << "G" << endl;
+    cout << "ì²˜ì¹˜í•œ ëª¬ìŠ¤í„° ìˆ˜: " << monstersDefeated << endl;
+    
+    //  í˜„ì¬ ì¸ë²¤í† ë¦¬ ì •ë³´ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤.
+    myInventory.showInventory();
 }
 
-// °æÇèÄ¡ È¹µæ
+// ê²½í—˜ì¹˜ íšë“
 void Character::gainExperience(int exp)
 {
     experience += exp;
-    std::cout << name << " ÀÌ(°¡) " << exp << " °æÇèÄ¡¸¦ ¾ò¾ú½À´Ï´Ù!" << std::endl;
+    std::cout << name << " ì´(ê°€) " << exp << " ê²½í—˜ì¹˜ë¥¼ ì–»ì—ˆìŠµë‹ˆë‹¤!" << std::endl;
 
-    // °æÇèÄ¡°¡ ÃæºĞÇÏ¸é ·¹º§¾÷
+    // ê²½í—˜ì¹˜ê°€ ì¶©ë¶„í•˜ë©´ ë ˆë²¨ì—…
     while (experience >= experienceToLevelUp) {
         experience -= experienceToLevelUp;
         levelUp();
     }
 }
 
-// ·¹º§¾÷ ±¸Çö
+// ë ˆë²¨ì—… êµ¬í˜„
 void Character::levelUp()
 {
     if (level < 10) {
         level++;
-        experienceToLevelUp = 100;  // ·¹º§¾÷ ½Ã ÇÊ¿äÇÑ °æÇèÄ¡ Áõ°¡
-        maxHealth += (level * 20);     // ·¹º§¾÷ ½Ã Ã¼·Â Áõ°¡
-        attackPower += level * 5;    // ·¹º§¾÷ ½Ã °ø°İ·Â Áõ°¡
-        currentHealth = maxHealth;  // Ã¼·ÂÀº ÃÖ´ë Ã¼·ÂÀ¸·Î È¸º¹
-        maxMana += 10;    // ÃÖ´ë ¸¶³ª
-        currentMana = maxMana;      // ÇöÀç ¸¶³ª
-        cout << name << " ÀÌ(°¡) ·¹º§ " << level << " ·Î ·¹º§¾÷Çß½À´Ï´Ù!" << std::endl;
+        experienceToLevelUp = 100;  // ë ˆë²¨ì—… ì‹œ í•„ìš”í•œ ê²½í—˜ì¹˜ ì¦ê°€
+        maxHealth += (level * 20);     // ë ˆë²¨ì—… ì‹œ ì²´ë ¥ ì¦ê°€
+        attackPower += level * 5;    // ë ˆë²¨ì—… ì‹œ ê³µê²©ë ¥ ì¦ê°€
+        currentHealth = maxHealth;  // ì²´ë ¥ì€ ìµœëŒ€ ì²´ë ¥ìœ¼ë¡œ íšŒë³µ
+        maxMana += 10;    // ìµœëŒ€ ë§ˆë‚˜
+        currentMana = maxMana;      // í˜„ì¬ ë§ˆë‚˜
+        cout << name << " ì´(ê°€) ë ˆë²¨ " << level << " ë¡œ ë ˆë²¨ì—…í–ˆìŠµë‹ˆë‹¤!" << std::endl;
     }
 }
 
-// ½ºÅ³ »ç¿ë
+// ìŠ¤í‚¬ ì‚¬ìš©
 void Character::useSkill(const std::string& skillName, int manaCost)
 {
-    if (currentMana >= manaCost) { // ¸¶³ª°¡ ÃæºĞÇÑ °æ¿ì
-        currentMana -= manaCost;  // ¸¶³ª Â÷°¨
-        cout << skillName << " ½ºÅ³À» »ç¿ëÇß½À´Ï´Ù! ¸¶³ª " << manaCost << " ¼Ò¸ğ!" << std::endl;
-        cout << "³²Àº ¸¶³ª: " << currentMana << "/" << maxMana << std::endl;
+    if (currentMana >= manaCost) { // ë§ˆë‚˜ê°€ ì¶©ë¶„í•œ ê²½ìš°
+        currentMana -= manaCost;  // ë§ˆë‚˜ ì°¨ê°
+        cout << skillName << " ìŠ¤í‚¬ì„ ì‚¬ìš©í–ˆìŠµë‹ˆë‹¤! ë§ˆë‚˜ " << manaCost << " ì†Œëª¨!" << std::endl;
+        cout << "ë‚¨ì€ ë§ˆë‚˜: " << currentMana << "/" << maxMana << std::endl;
     }
-    else { // ¸¶³ª°¡ ºÎÁ·ÇÑ °æ¿ì
-        cout << "¸¶³ª°¡ ºÎÁ·ÇÕ´Ï´Ù! " << skillName << " ½ºÅ³À» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù." << std::endl;
+    else { // ë§ˆë‚˜ê°€ ë¶€ì¡±í•œ ê²½ìš°
+        cout << "ë§ˆë‚˜ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤! " << skillName << " ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." << std::endl;
     }
 }
 
-// ¸ó½ºÅÍ Ã³Ä¡
+// ëª¬ìŠ¤í„° ì²˜ì¹˜
 void Character::defeatMonster() {
     monstersDefeated++;
-    std::cout << name << " ÀÌ(°¡) ¸ó½ºÅÍ¸¦ Ã³Ä¡Çß½À´Ï´Ù! (ÃÑ Ã³Ä¡ ¼ö: "
+    std::cout << name << " ì´(ê°€) ëª¬ìŠ¤í„°ë¥¼ ì²˜ì¹˜í–ˆìŠµë‹ˆë‹¤! (ì´ ì²˜ì¹˜ ìˆ˜: "
         << monstersDefeated << ")" << std::endl;
     gainExperience(50);
 }
