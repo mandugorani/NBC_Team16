@@ -4,39 +4,40 @@
 #include <iostream>
 #include "Inventory.h"
 
-// Çì´õ¿¡´Â ¼±¾ğ¸¸
+// í—¤ë”ì—ëŠ” ì„ ì–¸ë§Œ
 class Character
 {
 public:
-    std::string name;       // Ä³¸¯ÅÍ ÀÌ¸§
-    int level;              // ·¹º§
-    int currentHealth;      // ÇöÀç Ã¼·Â
-    int maxHealth;          // ÃÖ´ë Ã¼·Â
-    int attackPower;        // °ø°İ·Â
-    int experience;         // °æÇèÄ¡
-    int experienceToLevelUp; // ·¹º§¾÷¿¡ ÇÊ¿äÇÑ °æÇèÄ¡
-    int gold;               // ¼ÒÁö±İ
-    int maxMana;            // ÃÖ´ë ¸¶³ª
-    int currentMana;        // ÇöÀç ¸¶³ª
-    int monstersDefeated;   // Ã³Ä¡ÇÑ ¸ó½ºÅÍ ¼ö
+    std::string name;       // ìºë¦­í„° ì´ë¦„
+    int level;              // ë ˆë²¨
+    int currentHealth;      // í˜„ì¬ ì²´ë ¥
+    int maxHealth;          // ìµœëŒ€ ì²´ë ¥
+    int attackPower;        // ê³µê²©ë ¥
+    int experience;         // ê²½í—˜ì¹˜
+    int experienceToLevelUp; // ë ˆë²¨ì—…ì— í•„ìš”í•œ ê²½í—˜ì¹˜
+    int gold;               // ì†Œì§€ê¸ˆ
+    int maxMana;            // ìµœëŒ€ ë§ˆë‚˜
+    int currentMana;        // í˜„ì¬ ë§ˆë‚˜
+    int monstersDefeated;   // ì²˜ì¹˜í•œ ëª¬ìŠ¤í„° ìˆ˜
 
-    // »ı¼ºÀÚ
+    // ìƒì„±ì
     Character(std::string charName);
 
-    // Ä³¸¯ÅÍ »óÅÂ Ãâ·Â ÇÔ¼ö
+    // ìºë¦­í„° ìƒíƒœ ì¶œë ¥ í•¨ìˆ˜
     void displayStatus();
 
-    // °æÇèÄ¡ ¾ò±â
+    // ê²½í—˜ì¹˜ ì–»ê¸°
     void gainExperience(int exp);
 
-    // ·¹º§¾÷ ÇÔ¼ö
+    // ë ˆë²¨ì—… í•¨ìˆ˜
     void levelUp();
 
-    // ½ºÅ³ »ç¿ë ÇÔ¼ö
-    void useSkill(const std::string& skillName, int manaCost);
+    // ìŠ¤í‚¬ ì‚¬ìš© í•¨ìˆ˜
+    void useSkill(const std::string& skillName);
 
-    // ¸ó½ºÅÍ Ã³Ä¡ Ä«¿îÆ® Áõ°¡
+    // ëª¬ìŠ¤í„° ì²˜ì¹˜ ì¹´ìš´íŠ¸ ì¦ê°€
     void defeatMonster();
 
+    // ì¸ë²¤í† ë¦¬ ê°ì²´ ì¶”ê°€
     Inventory myInventory;
 };

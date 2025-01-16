@@ -1,10 +1,11 @@
-﻿#pragma once
+#pragma once
 
 #include <string>
-#include "Character.h"
 #include <iostream>
 
 using namespace std;
+
+class Character;
 
 class Item
 {
