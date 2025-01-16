@@ -1,22 +1,22 @@
 #include "Monster.h"
 #include <cstdlib>
 
-// ¸ó½ºÅÍ Á¾·ù ¸®½ºÆ®
-// ÀÌ¸§, Ã¼·Â, °ø°İ·Â, °ñµå, È®·ü
+// ëª¬ìŠ¤í„° ì¢…ë¥˜ ë¦¬ìŠ¤íŠ¸
+// ì´ë¦„, ì²´ë ¥, ê³µê²©ë ¥, ê³¨ë“œ, í™•ë¥ 
 vector<MonsterType> monsterTypes =
 {
-    {"°íºí¸°", 80, 110, 8, 13, 5, 10, 50.0},
-    {"½ºÄÌ·¹Åæ", 120, 180, 10, 18, 10, 20, 40.0},
-    {"¿ÀÅ©", 200, 280, 20, 35, 20, 30, 9.0},
-    {"º¸¹° °íºí¸°", 20, 30, 1, 5, 100, 150, 1.0}
+    {"Goblin", 80, 110, 8, 13, 5, 10, 50.0},
+    {"Skeleton", 120, 180, 10, 18, 10, 20, 40.0},
+    {"Orc", 200, 280, 20, 35, 20, 30, 9.0},
+    {"Treasure Goblin", 20, 30, 1, 5, 100, 150, 1.0}
 };
 
-// MonsterType »ı¼ºÀÚ ±¸Çö
+// MonsterType constructor implementation
 MonsterType::MonsterType(const string& name, int minHealth, int maxHealth, int minAttack, int maxAttack, int minGold, int maxGold, double spawnChance)
     :name(name), minHealth(minHealth), maxHealth(maxHealth), minAttack(minAttack), maxAttack(maxAttack), minGold(minGold), maxGold(maxGold), spawnChance(spawnChance) {
 }
 
-// Monster »ı¼ºÀÚ ±¸Çö
+// Monster constructor implementation
 Monster::Monster(const string& MonsterName, int Level, int minHealth, int maxHealth, int minAttack, int maxAttack, int minGold, int maxGold)
 {
     name = MonsterName;
@@ -25,14 +25,14 @@ Monster::Monster(const string& MonsterName, int Level, int minHealth, int maxHea
     goldDrop = randRange(minGold, maxGold);
 }
 
-// ±¸ÇöºÎ¿¡ ¼±¾ğ ÀÖ´ÂÁö È®ÀÎ
-// ·£´ı ¹üÀ§ ÇÔ¼ö ±¸Çö
+// êµ¬í˜„ë¶€ì— ì„ ì–¸ ìˆëŠ”ì§€ í™•ì¸
+// ëœë¤ ë²”ìœ„ í•¨ìˆ˜ êµ¬í˜„
 int randRange(int min, int max)
 {
     return min + (rand() % (max - min + 1));
 }
 
-// ·£´ı ¸ó½ºÅÍ »ı¼º ÇÔ¼ö
+// ëœë¤ ëª¬ìŠ¤í„° ìƒì„± í•¨ìˆ˜
 Monster generateRandomMonster(int playerLevel)
 {
     double roll = (rand() % 100) + 1;
@@ -56,7 +56,7 @@ Monster generateRandomMonster(int playerLevel)
         }
     }
 
-    // ±âº»ÀûÀ¸·Î Ã¹ ¹øÂ° ¸ó½ºÅÍ ¹İÈ¯
+    // ê¸°ë³¸ì ìœ¼ë¡œ ì²« ë²ˆì§¸ ëª¬ìŠ¤í„° ë°˜í™˜
     return Monster(
         monsterTypes[0].name,
         playerLevel,
@@ -69,13 +69,13 @@ Monster generateRandomMonster(int playerLevel)
     );
 }
 
-// º¸½º ¸ó½ºÅÍ
+// ë³´ìŠ¤ ëª¬ìŠ¤í„°
 Monster generateBossMonster()
 {
-    string bossName = "Á¤¿¹ ¿ÀÅ©";       // º¸½º Àü¿ë ÀÌ¸§
-    int bossHealth = 1000;      // º¸½º Ã¼·Â
-    int bossAttackPower = 70;   // º¸½º °ø°İ·Â
-    int bossGoldDrop = 500;     // º¸½º Ã³Ä¡ ½Ã º¸»ó °ñµå
+    string bossName = "Elite Orc";     // ë³´ìŠ¤ ì „ìš© ì´ë¦„
+    int bossHealth = 1000;             // ë³´ìŠ¤ ì²´ë ¥
+    int bossAttackPower = 70;          // ë³´ìŠ¤ ê³µê²©ë ¥
+    int bossGoldDrop = 500;            // ë³´ìŠ¤ ì²˜ì¹˜ ì‹œ ë³´ìƒ ê³¨ë“œ
 
     return Monster(bossName, 10, bossHealth, bossHealth, bossAttackPower, bossAttackPower, bossGoldDrop, bossGoldDrop);
 }

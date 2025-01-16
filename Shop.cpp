@@ -1,4 +1,4 @@
-﻿#include "AllGameHeader.h"
+#include "AllGameHeader.h"
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -16,32 +16,32 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
     };
 
     while (true) {
-        cout << "\n=== 상점 ===" << endl;
+        cout << "\n=== Shop ===" << endl;
         Character.displayStatus();
         cout << endl << endl;
-        cout << "1. 아이템 구매" << endl;
-        cout << "2. 아이템 판매" << endl;
-        cout << "3. 상점 나가기" << endl;
+        cout << "1. Buy Item" << endl;
+        cout << "2. Sell Item" << endl;
+        cout << "3. Exit Shop" << endl;
 
-        cout << "원하는 작업을 선택하세요: ";
+        cout << "Select the action you want: ";
         int choice;
         cin >> choice;
 
         if (choice == 3) {
-            cout << "상점을 나갑니다." << endl;
+            cout << "Exiting the shop." << endl;
             break;
         }
 
         if (choice == 1) {
             // 아이템 구매
-            cout << "\n구매 가능한 아이템 목록:" << endl;
+            cout << "\nAvailable items for purchase:" << endl;
             for (size_t i = 0; i < shopItems.size(); ++i) {
                 cout << i + 1 << ". " << shopItems[i]->getName()
                     << " - " << shopItems[i]->getPrice() << "G" << endl;
             }
-            cout << shopItems.size() + 1 << ". 뒤로 가기" << endl;
+            cout << shopItems.size() + 1 << ". Go Back" << endl;
 
-            cout << "구매할 아이템 번호를 선택하세요: ";
+            cout << "Select the item number you want to buy: ";
             int itemChoice;
             cin >> itemChoice;
 
@@ -50,7 +50,7 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
             }
 
             if (itemChoice < 1 || itemChoice > shopItems.size()) {
-                cout << "잘못된 선택입니다. 다시 시도하세요." << endl;
+                cout << "Invalid choice. Please try again." << endl;
                 continue;
             }
 
@@ -58,27 +58,27 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
             if (Character.gold >= selectedItem->getPrice()) {
                 Character.gold -= selectedItem->getPrice();
                 inventory.push_back(selectedItem);
-                cout << selectedItem->getName() << "을(를) 구매했습니다!" << endl;
+                cout << "Purchased " << selectedItem->getName() << "!" << endl;
             }
             else {
-                cout << "골드가 부족합니다!" << endl;
+                cout << "Insufficient gold!" << endl;
             }
         }
         else if (choice == 2) {
             // 아이템 판매
             if (inventory.empty()) {
-                cout << "인벤토리가 비어 있습니다!" << endl;
+                cout << "Inventory is empty!" << endl;
                 continue;
             }
 
-            cout << "\n판매 가능한 아이템 목록:" << endl;
+            cout << "\nItems available for sale:" << endl;
             for (size_t i = 0; i < inventory.size(); ++i) {
                 cout << i + 1 << ". " << inventory[i]->getName()
-                    << " - " << inventory[i]->getPrice() / 2 << "G (판매 가격)" << endl;
+                    << " - " << inventory[i]->getPrice() / 2 << "G (Sale Price)" << endl;
             }
-            cout << inventory.size() + 1 << ". 뒤로 가기" << endl;
+            cout << inventory.size() + 1 << ". Go Back" << endl;
 
-            cout << "판매할 아이템 번호를 선택하세요: ";
+            cout << "Select the item number you want to sell: ";
             int sellChoice;
             cin >> sellChoice;
 
@@ -87,7 +87,7 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
             }
 
             if (sellChoice < 1 || sellChoice > inventory.size()) {
-                cout << "잘못된 선택입니다. 다시 시도하세요." << endl;
+                cout << "Invalid choice. Please try again." << endl;
                 continue;
             }
 
@@ -96,11 +96,11 @@ void shop(Character& Character, vector<shared_ptr<Item>>& inventory)
             Character.gold += sellPrice;
             inventory.erase(inventory.begin() + sellChoice - 1);
 
-            cout << selectedItem->getName() << "을(를) " << sellPrice
-                << "G에 판매했습니다!" << endl;
+            cout << "Sold " << selectedItem->getName() << " for " << sellPrice
+                << "G!" << endl;
         }
         else {
-            cout << "잘못된 선택입니다. 다시 시도하세요." << endl;
+            cout << "Invalid choice. Please try again." << endl;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿#include "AllGameHeader.h"
+#include "AllGameHeader.h"
 #include <algorithm>
 
 using namespace std;
@@ -17,7 +17,7 @@ void Item::use(Character& Character) const {
 
 // 체력 포션(소) 구현
 string SmallHealthPotion::getName() const {
-    return "체력 포션(소)";
+    return "Lesser Health Potion";
 }
 
 int SmallHealthPotion::getPrice() const {
@@ -27,13 +27,13 @@ int SmallHealthPotion::getPrice() const {
 void SmallHealthPotion::use(Character& Character) const {
     int healAmount = 80;
     Character.currentHealth = min(Character.currentHealth + healAmount, Character.maxHealth);
-    cout << "체력이 " << healAmount << "만큼 회복되었습니다. (현재 체력: "
+    cout << "Restored " << healAmount << "HP. Current HP: ("
         << Character.currentHealth << "/" << Character.maxHealth << ")" << endl;
 }
 
 // 체력 포션(대) 구현
 string LargeHealthPotion::getName() const {
-    return "체력 포션(대)";
+    return "Health potion";
 }
 
 int LargeHealthPotion::getPrice() const {
@@ -43,13 +43,13 @@ int LargeHealthPotion::getPrice() const {
 void LargeHealthPotion::use(Character& Character) const {
     int healAmount = 200;
     Character.currentHealth = min(Character.currentHealth + healAmount, Character.maxHealth);
-    cout << "체력이 " << healAmount << "만큼 회복되었습니다. (현재 체력: "
+    cout << "Restored " << healAmount << "HP. Current HP: ("
         << Character.currentHealth << "/" << Character.maxHealth << ")" << endl;
 }
 
 // 마나 포션 구현
 string ManaPotion::getName() const {
-    return "마나 포션";
+    return "Mana Potion";
 }
 
 int ManaPotion::getPrice() const {
@@ -59,13 +59,13 @@ int ManaPotion::getPrice() const {
 void ManaPotion::use(Character& Character) const {
     int manaAmount = 100;
     Character.currentMana = min(Character.currentMana + manaAmount, Character.maxMana);
-    cout << "마나가 " << manaAmount << "만큼 회복되었습니다. (현재 마나: "
+    cout << "restored " << manaAmount << "mana. Current mana: ("
         << Character.currentMana << "/" << Character.maxMana << ")" << endl;
 }
 
 // 공격력 강화 구현
 string AttackBoost::getName() const {
-    return "공격력 강화";
+    return "Increase Attack Power";
 }
 
 int AttackBoost::getPrice() const {
@@ -74,5 +74,5 @@ int AttackBoost::getPrice() const {
 
 void AttackBoost::use(Character& Character) const {
     Character.attackPower = static_cast<int>(Character.attackPower * 1.5);
-    cout << "공격력이 강화되었습니다! (현재 공격력: " << Character.attackPower << ")" << endl;
+    cout << "ATK increased! current atk: (" << Character.attackPower << ")" << endl;
 }

@@ -18,83 +18,83 @@ Character::Character(string charName)
 	monstersDefeated = 0; // 생성 시 처치 몬스터 수는 0
 
 	// 히든 캐릭터 구현?
-	if (name == "스파르타")
-	{
-		maxHealth += 200;
-		currentHealth = maxHealth;
-		attackPower += 20;
-		cout << name << "은(는) 히든 캐릭터 입니다!" << endl;
-	}
+    if (name == "Sparta")
+    {
+        maxHealth += 200;
+        currentHealth = maxHealth;
+        attackPower += 20;
+        cout << name << " is a hidden character!" << endl;
+    }
 }
 
-// 현재 상태
+// Current Status
 void Character::displayStatus()
 {
-	cout << "\n=== 플레이어 상태 ===" << endl;
-	cout << "이름: " << name << endl;
-	cout << "레벨: " << level << endl;
-	cout << "경험치: " << experience << "/" << experienceToLevelUp
-		<< " (레벨업까지 " << (experienceToLevelUp - experience) << " 남음)" << endl;
-	cout << "체력: " << currentHealth << "/" << maxHealth << endl;
-	cout << "마나: " << currentMana << "/" << maxMana << endl;
-	cout << "공격력: " << attackPower << endl;
-	cout << "보유 골드: " << gold << "G" << endl;
-	cout << "처치한 몬스터 수: " << monstersDefeated << endl;
-	
-	//  현재 인벤토리 정보를 표시합니다.
-	myInventory.showInventory();
+    cout << "\n=== Player Status ===" << endl;
+    cout << "Name: " << name << endl;
+    cout << "Level: " << level << endl;
+    cout << "Experience: " << experience << "/" << experienceToLevelUp
+        << " (Remaining to level up: " << (experienceToLevelUp - experience) << ")" << endl;
+    cout << "Health: " << currentHealth << "/" << maxHealth << endl;
+    cout << "Mana: " << currentMana << "/" << maxMana << endl;
+    cout << "Attack Power: " << attackPower << endl;
+    cout << "Gold: " << gold << "G" << endl;
+    cout << "Monsters Defeated: " << monstersDefeated << endl;
+
+    // Display current inventory information.
+    myInventory.showInventory();
 }
 
-// 경험치 획득
+// Gain Experience
 void Character::gainExperience(int exp)
 {
-	experience += exp;
-	cout << name << " 이(가) " << exp << " 경험치를 얻었습니다!" << endl;
+    experience += exp;
+    cout << name << " gained " << exp << " experience points!" << endl;
 
-	// 경험치가 충분하면 레벨업
-	while (experience >= experienceToLevelUp) {
-		experience -= experienceToLevelUp;
-		levelUp();
-	}
+    // Level up if experience is sufficient
+    while (experience >= experienceToLevelUp) {
+        experience -= experienceToLevelUp;
+        levelUp();
+    }
 }
 
-// 레벨업 구현
+// Level Up Implementation
 void Character::levelUp()
 {
-	if (level < 10) {
-		level++;
-		experienceToLevelUp = 100;  // 레벨업 시 필요한 경험치 증가
-		maxHealth += (level * 20);     // 레벨업 시 체력 증가
-		attackPower += level * 5;    // 레벨업 시 공격력 증가
-		currentHealth = maxHealth;  // 체력은 최대 체력으로 회복
-		maxMana += 10;    // 최대 마나 증가
-		currentMana = maxMana;      // 레벨업 시 최대 마나로 회복
-		cout << name << " 이(가) 레벨 " << level << " 로 레벨업했습니다!" << endl;
-	}
+    if (level < 10) {
+        level++;
+        experienceToLevelUp = 100;  // Increase required experience for level-up
+        maxHealth += (level * 20);  // Increase health on level-up
+        attackPower += level * 5;   // Increase attack power on level-up
+        currentHealth = maxHealth;  // Restore health to max health
+        maxMana += 10;              // Increase max mana
+        currentMana = maxMana;      // Restore mana to max mana on level-up
+        cout << name << " leveled up to level " << level << "!" << endl;
+    }
 }
 
-// 스킬 사용
+// Use Skill
 void Character::useSkill(const std::string& skillName)
 {
-	const int manaCost = 20;  // 마나 소모량 20으로 고정
+    const int manaCost = 20;  // Fixed mana cost of 20
 
-	if (currentMana >= manaCost) // 마나가 충분한 경우
-	{
-		currentMana -= manaCost;  // 마나 차감
-		cout << "Judgment Blade 스킬을 사용했습니다! 마나 " << manaCost << " 소모!" << std::endl;
-		cout << "남은 마나: " << currentMana << "/" << maxMana << std::endl;
-	}
-	else { // 마나가 부족한 경우
-		cout << "마나가 부족합니다! Judgment Blade 스킬을 사용할 수 없습니다." << std::endl;
-	}
+    if (currentMana >= manaCost) // If mana is sufficient
+    {
+        currentMana -= manaCost;  // Subtract mana
+        cout << "Used Judgment Blade skill! Mana cost: " << manaCost << std::endl;
+        cout << "Remaining mana: " << currentMana << "/" << maxMana << std::endl;
+    }
+    else { // If mana is insufficient
+        cout << "Insufficient mana! Unable to use Judgment Blade skill." << std::endl;
+    }
 }
 
 
-// 몬스터 처치
+// Defeat Monster
 void Character::defeatMonster()
 {
-	monstersDefeated++;
-	cout << name << " 이(가) 몬스터를 처치했습니다! (총 처치 수: "
-		<< monstersDefeated << ")" << endl;
-	gainExperience(50);
+    monstersDefeated++;
+    cout << name << " defeated a monster! (Total defeated: "
+        << monstersDefeated << ")" << endl;
+    gainExperience(50);
 }
