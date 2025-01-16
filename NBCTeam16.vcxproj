@@ -134,6 +134,7 @@
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="NBCTeam16.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllGameHeader.h" />
@@ -143,6 +144,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
