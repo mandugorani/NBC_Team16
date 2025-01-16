@@ -74,18 +74,18 @@ void Character::levelUp()
 }
 
 // Use Skill
-void Character::useSkill(const std::string& skillName)
+void Character::useSkill(const string& skillName)
 {
     const int manaCost = 20;  // Fixed mana cost of 20
 
     if (currentMana >= manaCost) // If mana is sufficient
     {
         currentMana -= manaCost;  // Subtract mana
-        cout << "Used Judgment Blade skill! Mana cost: " << manaCost << std::endl;
-        cout << "Remaining mana: " << currentMana << "/" << maxMana << std::endl;
+        cout << "Used Power Strike! Mana cost: " << manaCost << endl;
+        cout << "Remaining mana: " << currentMana << "/" << maxMana << endl;
     }
     else { // If mana is insufficient
-        cout << "Insufficient mana! Unable to use Judgment Blade skill." << std::endl;
+        cout << "Insufficient mana! Unable to use Judgment Blade skill." << endl;
     }
 }
 

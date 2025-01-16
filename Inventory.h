@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -12,6 +12,9 @@ public:
 	void useItem(Character& character);
 
 	void showInventory() const;
+	std::vector<std::shared_ptr<Item>>& getItems() {
+		return items;  // 아이템 목록을 반환
+	}
 
 private:
 	vector<shared_ptr<Item>> items;
