@@ -18,6 +18,7 @@ public:
 	void battle(Character& player);
 	void generateItem(Character& player);
 	void BossBattle(Character& player, Monster& boss);
+	void displayEndMessage();
 
 private:
 	BattleManager() {};

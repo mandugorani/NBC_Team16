@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include "AllGameHeader.h"
 
 using namespace std;
@@ -44,7 +44,8 @@ void BattleManager::battleStart(Character& player) {
 				cout << "Boss name: " << boss.name << " HP: " << boss.health << ", ATK: " << boss.attackPower << endl;
 				BossBattle(player, boss);
 
-			}else{
+			}
+			else {
 				battle(player);
 			}
 			break;
@@ -137,8 +138,13 @@ void BattleManager::BossBattle(Character& player, Monster& boss) {
 		if (boss.health <= 0) {
 			cout << "You have defeated the Boss!" << endl;
 			player.defeatMonster();
+
+			displayEndMessage();
+
+			exit(0);
 			// 보스 처치 시?
-			break;
+
+			return;
 		}
 		player.currentHealth -= boss.attackPower;
 		cout << boss.name << " attacks! " << player.name << "'s HP decreased to " << player.currentHealth << "!" << endl;
@@ -180,4 +186,10 @@ void BattleManager::generateItem(Character& player) {
 	else {
 		cout << "No item found." << endl;
 	}
+}
+
+void BattleManager::displayEndMessage() {
+	cout << "\n=== END ===" << endl;
+	cout << "Game developed by: You" << endl;
+	cout << "Thank you for playing!" << endl;
 }
